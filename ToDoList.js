@@ -9,6 +9,7 @@ class ToDoList extends Component{
       textValue:''
     };
     this.handleAddToDoItem = this.handleAddToDoItem.bind(this);
+    this.handleDeleteToDoItem = this.handleDeleteToDoItem.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -24,7 +25,8 @@ class ToDoList extends Component{
   }
 
   handleDeleteToDoItem(){
-
+    this.state.value.splice(this.state.value.indexOf(this.state.value),1);
+    this.setState(this.state);
   }
 
   render(){
@@ -32,6 +34,7 @@ class ToDoList extends Component{
     <div>
       <input type='text' placeholder ="Enter the value" onChange={this.handleChange}/>
       <button onClick={this.handleAddToDoItem}>Add Item</button>
+      <button onClick={this.handleDeleteToDoItem}>Delete Item</button>
       <p>{this.state.value}</p>
     </div>
     )
