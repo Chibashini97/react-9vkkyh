@@ -15,7 +15,7 @@ class FormDemo extends Component{
   }
   handleChange(event){
     this.setState({
-      name : event.target.value
+      [event.target.name]: event.target.value
     })
   }
 
@@ -30,11 +30,15 @@ class FormDemo extends Component{
 
   validate(){
     let nameError = '';
+    let emailError = '';
     if(!this.state.name){
       nameError = "Name cannot be empty";
     }
-    if(nameError){
-      this.setState({nameError});
+    if(! this.state.email.includes('@')){
+      emailError = "Invalid Email ID"
+    }
+    if(nameError||emailError){
+      this.setState({nameError,emailError});
       return false;
     }
     return true;
@@ -44,10 +48,11 @@ class FormDemo extends Component{
     return(
       <form onSumbit={this.handleSubmit}>
         <div>
-          Name:<input type="text" name="name" onChange={this.handleChange}/><br/>
+          Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/><br/>
           <div style = {{color:'red'}}>{this.state.nameError}</div><br/>
-          Email:<input type="text" name="email"/><br/>
-          <center><input type="Submit" value="Submit"/></center><br/>
+          Email:<input type="text" name="email" onChange={this.handleChange} value={this.state.email}/><br/>
+          <div style = {{color:'red'}}>{this.state.emailError}</div><br/>
+          <center><input type="Submit" name="Submit"/></center><br/>
         </div>
       </form>
     )
