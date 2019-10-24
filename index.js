@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
 import ToDoList from './ToDoList'
+import NewFile from './NewFile'
 import FormDemo from './FormDemo'
 
 class App extends Component {
@@ -16,7 +17,8 @@ class App extends Component {
   render() {
     return (
       <div>
-      <FormDemo />
+      
+      <FormDemo/>
       </div>
     );
   }

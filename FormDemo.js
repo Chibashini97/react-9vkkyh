@@ -13,17 +13,17 @@ class FormDemo extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event){
+  handleChange(e){
     this.setState({
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     })
+    this.setState({nameError:'',emailError:''})
   }
 
   handleSubmit(event){
     const result = this.validate();
     if(result){
-     this.setState({nameError:''})
-      alert("Name Submitted");
+     alert("Name Submitted");
     }
      event.preventDefault();
   }
@@ -34,7 +34,7 @@ class FormDemo extends Component{
     if(!this.state.name){
       nameError = "Name cannot be empty";
     }
-    if(! this.state.email.includes('@')){
+    if(!this.state.email.includes("@")){
       emailError = "Invalid Email ID"
     }
     if(nameError||emailError){
@@ -46,7 +46,7 @@ class FormDemo extends Component{
 
   render(){
     return(
-      <form onSumbit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <div>
           Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/><br/>
           <div style = {{color:'red'}}>{this.state.nameError}</div><br/>
